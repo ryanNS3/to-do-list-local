@@ -1,11 +1,14 @@
 import './App.css'
+import { TrashPrimary, TrashSecondary, TrashTerciary } from './Components/Button/Trash'
 
 function App() {
 
 
   return (
     <>
-      <dialog className=''></dialog>
+      <TrashPrimary/>
+      <TrashSecondary/>
+      <TrashTerciary/>
     </>
   )
 }
