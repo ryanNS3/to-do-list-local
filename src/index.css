@@ -2,6 +2,7 @@
 
 @theme{
   --color-*: initial;
+  --text-*: initial;
   --color-white: #ffffff;
   /* cinza */
   --color-gray-100: #F7F3F6;
@@ -17,4 +18,17 @@
   --color-pink-base: #E9CCE1;
   --color-pink-dark: #884074;
   --font-sans: "Cairo", sans-serif;
+
+
+  --text-body-md: 1rem ;
+  --text-body-sm: 0.87rem; 
+
+  
+
+
+
+
+
+
+
 }
