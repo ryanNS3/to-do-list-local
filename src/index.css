@@ -5,6 +5,7 @@
   --text-*: initial;
   --color-white: #ffffff;
   /* cinza */
+  --color-gray-50: #D5DED5;
   --color-gray-100: #F7F3F6;
   --color-gray-200: #F4E6F0;
   --color-gray-300: #7A6E76;
@@ -19,7 +20,7 @@
   --color-pink-dark: #884074;
   --font-sans: "Cairo", sans-serif;
 
-
+  --text-lg: 1.5rem; 
   --text-body-md: 1rem ;
   --text-body-sm: 0.87rem; 
 
