@@ -1,5 +1,7 @@
 @import "tailwindcss";
-
+svg{
+  pointer-events: none;
+}
 @theme{
   --color-*: initial;
   --text-*: initial;
@@ -24,7 +26,11 @@
   --text-body-md: 1rem ;
   --text-body-sm: 0.87rem; 
 
-  
+
+ 
+
+  }
+ 
 
 
 
@@ -32,4 +38,3 @@
 
 
 
-}
