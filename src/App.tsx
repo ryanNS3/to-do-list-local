@@ -4,16 +4,63 @@ import { Logo } from './assets/Logo'
 import { PlusRegular, PlusRegularRose } from './assets/Plus-Regular'
 import { Button } from './Components/Button/Button'
 import { CardTask } from './Components/CardTask'
+import type { taskInterface } from './@Types/taskInterface'
 
 
 
 
 function App() {
-  const [tasks, setTasks] = React.useState([])
+  const [tasks, setTasks] = React.useState<any>([])
+  const [isEditing, setIsEditing] = React.useState<any>()
+  const counterID= React.useRef(0);
+ 
 
   function handleAddTask() {
-    setTasks([...tasks, "Nova tarefa"])
+    console.log(counterID)
+    setTasks([...tasks, { text: 'Nova tarefa', status: false, id:counterID.current, isEditing: false }])
+    counterID.current += 1;
     console.log(tasks)
+  }
+
+  function handleEdit({target} : any) {
+ 
+    setTasks((prev: any) => prev.map((task: taskInterface) => {
+      if (task.id == target.getAttribute('set-idTarefa')) {
+        
+        return { ...task, isEditing: !task.isEditing }
+      }
+      return task
+    }))
+    console.log(tasks)
+   
+  }
+
+  function handleChangeStatus({target}){
+    
+    setTasks((prev: any) => prev.map((task: taskInterface) => {
+      console.log(target.id)
+      if (task.id == target.id) {
+        
+        return { ...task, status: !task.status }
+      }
+      return task
+    }))
+  }
+
+  function handleDelete({target}){
+    setTasks((prev) => prev.filter(task => task.id != target.getAttribute('set-idTarefa')))
+    console.log(tasks)
+
+  }
+
+  function handleChangeText({target}){
+    setTasks((prev) => prev.map(task => {
+      if (task.id == target.getAttribute('set-idTarefa')) {
+        
+        return { ...task, text: target.value }
+      }
+      return task
+    })) 
   }
 
   return (
@@ -24,7 +71,7 @@ function App() {
 
       </section>
 
-      <section className='flex flex-col gap-2'>
+      <section className='flex flex-col gap-2 max-h-full overflow-y-auto'>
         <section className='flex justify-between w-full gap-4'>
           <div className=' flex gap-2 text-bold  '>
             <p>Tarefas criadas</p>
@@ -41,9 +88,17 @@ function App() {
         <Button onClick={handleAddTask} text='Nova tarefa' icon={<PlusRegularRose/>}/>
 
         {tasks &&
-          tasks.map((task) => {
+          tasks.map((task : taskInterface) => {
             return(
-              <CardTask/>
+              <CardTask 
+              id={task.id} 
+              text={task.text} 
+              status={task.status} 
+              isEditing={task.isEditing}
+              handleChangeStatus={handleChangeStatus} 
+              handleChangeText={handleChangeText} 
+              handleDelete={handleDelete} 
+              handleEdit={handleEdit} />
             )
           })
           
